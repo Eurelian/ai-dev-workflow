@@ -1,0 +1,51 @@
+{
+  "project": "",
+  "last_updated": "",
+  "last_updated_by": "",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "",
+      "goal": "",
+      "gate": "",
+      "gate_met": false,
+      "depends_on": [],
+      "tracks": [
+        {
+          "id": "1A",
+          "name": "",
+          "tasks": [
+            {
+              "id": "1A.1",
+              "name": "",
+              "status": "pending",
+              "depends_on": [],
+              "assigned_to": null,
+              "assigned_at": null,
+              "completed_at": null,
+              "complexity": "medium",
+              "notes": "",
+              "todos": [
+                {
+                  "id": "1A.1.1",
+                  "description": "",
+                  "status": "pending",
+                  "complexity": "low"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_tasks": 0,
+    "pending": 0,
+    "in_progress": 0,
+    "blocked": 0,
+    "review": 0,
+    "completed": 0,
+    "failed": 0
+  }
+}
