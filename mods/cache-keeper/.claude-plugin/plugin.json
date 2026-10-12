@@ -1,0 +1,60 @@
+{
+  "name": "cache-keeper",
+  "version": "0.1.0",
+  "author": { "name": "eurelian" },
+  "description": "Shows whether the prompt cache is warm, keeps it warm while that is cheaper, and asks before a cold send.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "ttl": {
+      "type": "string",
+      "title": "Cache TTL",
+      "description": "How long the prompt cache lives after a hit: 5m (default) or 1h.",
+      "options": ["5m", "1h"],
+      "default": "5m"
+    },
+    "billing": {
+      "type": "string",
+      "title": "Billing",
+      "description": "api shows dollars; subscription shows tokens and % of a cold rewrite.",
+      "options": ["api", "subscription"],
+      "default": "api"
+    },
+    "priceTable": {
+      "type": "string",
+      "title": "Price table (JSON)",
+      "description": "USD per million tokens, keyed by a substring of the model id: {\"opus\":{\"input\":4,\"write5m\":5,\"write1h\":8,\"read\":0.2}}. Verify against current pricing.",
+      "default": "{\"opus\":{\"input\":4,\"write5m\":5,\"write1h\":8,\"read\":0.2}}"
+    },
+    "gateUsd": {
+      "type": "number",
+      "title": "Cold-send gate threshold (USD)",
+      "description": "Hold a prompt when the cache is cold and the rewrite would cost more than this. 0 turns the gate off.",
+      "default": 0.5
+    },
+    "gateTokens": {
+      "type": "number",
+      "title": "Cold-send gate threshold (tokens)",
+      "description": "On a subscription, or a model with no price row: hold when the cold rewrite is larger than this. 0 turns the gate off.",
+      "default": 100000
+    },
+    "keepAlive": {
+      "type": "boolean",
+      "title": "Keep-alive ping",
+      "description": "While idle, ping the cache just before it expires, until the pings would cost more than one cold rewrite.",
+      "default": false
+    },
+    "maxIdleMinutes": {
+      "type": "number",
+      "title": "Keep-alive max idle (minutes)",
+      "description": "Stop pinging after this long without a prompt.",
+      "default": 120
+    },
+    "preCompact": {
+      "type": "string",
+      "title": "Compact before it goes cold",
+      "description": "When the keep-alive is about to stop: offer a compaction while still warm, run it, or do nothing.",
+      "options": ["offer", "auto", "off"],
+      "default": "offer"
+    }
+  }
+}
